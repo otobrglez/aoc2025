@@ -3,9 +3,8 @@
 package aoc
 
 import zio.*
-import zio.Console.printLine
+import zio.Console.*
 import zio.stream.*
-
 import java.nio.file.*
 
 object Main01 extends AOCApp:
