@@ -1,6 +1,6 @@
 # Advent of Code 2025
 
-This is my AoC 2025 in Scala 3 with Scala CLI.
+This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli].
 
 ## Solutions
 
@@ -9,4 +9,6 @@ This is my AoC 2025 in Scala 3 with Scala CLI.
 
 \- [Oto Brglez](https://github.com/otobrglez)
 
-
+[scala]: https://www.scala-lang.org/
+[scala-cli]: https://scala-cli.virtuslab.org/
+[aoc]: https://adventofcode.com/
