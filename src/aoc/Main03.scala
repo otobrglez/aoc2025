@@ -8,10 +8,7 @@ object Main03 extends AOCApp:
 
   private def computeJoltage(raw: String): Int =
     if raw.length < 2 then return 0
-
-    var maxNum   = Int.MinValue
-    var maxRight = raw.last.asDigit
-
+    var (maxNum, maxRight) = Int.MinValue -> raw.last.asDigit
     for i <- raw.length - 2 to 0 by -1 do
       val current = raw(i).asDigit
       val num     = current * 10 + maxRight
@@ -55,6 +52,8 @@ object Main03 extends AOCApp:
       .runSum
 
   def program(path: Path) = for
-    _ <- sumWith(path, computeJoltage).debug("Part 1")
-    _ <- sumWith(path, computeJoltage2).debug("Part 2")
+    sum1 <- sumWith(path, computeJoltage).debug("Part 1")
+    _     = assert(sum1 == 357)
+    sum2 <- sumWith(path, computeJoltage2).debug("Part 2")
+    _     = assert(sum2 == BigInt("3121910778619"))
   yield ()
