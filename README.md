@@ -1,4 +1,6 @@
-# Advent of Code 2025
+# 🎄 Advent of Code 2025 in Scala 🎄
+
+[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
 This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli].
 
