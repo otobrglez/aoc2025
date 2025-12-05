@@ -10,10 +10,10 @@ private object BigRange:
   def merge(ranges: List[BigRange]): List[BigRange]  =
     if ranges.isEmpty then List.empty
     else
-      val sorted = ranges.sortBy(_._1)
-      sorted.tail.foldLeft(List(sorted.head)) { case (merged, current @ (currentStart, currentEnd)) =>
-        val lastStart -> lastEnd = merged.head
-        if currentStart <= lastEnd + 1 then lastStart -> lastEnd.max(currentEnd) :: merged.tail
+      val head :: tail = ranges.sortBy(_._1): @unchecked
+      tail.foldLeft(head :: Nil) { case (merged @ mHead :: mTail, current @ (currentStart, currentEnd)) =>
+        val lastStart -> lastEnd = mHead
+        if currentStart <= lastEnd + 1 then lastStart -> lastEnd.max(currentEnd) :: mTail
         else current :: merged
       }
 
