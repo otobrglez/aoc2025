@@ -12,8 +12,8 @@ private object BigRange:
     else
       val sorted = ranges.sortBy(_._1)
       sorted.tail.foldLeft(List(sorted.head)) { case (merged, current @ (currentStart, currentEnd)) =>
-        val (lastStart, lastEnd) = merged.head
-        if currentStart <= lastEnd + 1 then (lastStart, lastEnd.max(currentEnd)) :: merged.tail
+        val lastStart -> lastEnd = merged.head
+        if currentStart <= lastEnd + 1 then lastStart -> lastEnd.max(currentEnd) :: merged.tail
         else current :: merged
       }
 
