@@ -6,9 +6,9 @@ import zio.stream.*
 
 import java.nio.file.*
 
-type Roll = Char
-val roll: Roll = '@'; val space: Roll = '.'
-type Row = Long; type Column = Long
+private type Roll = Char
+private val roll: Roll = '@'; val space: Roll = '.'
+private type Row = Long; type Column = Long
 
 final class Grid private (private val grid: Map[(Row, Column), Option[Roll]] = Map.empty):
   def find(r: Row, c: Column): Option[Roll]                     = grid.get((r, c)).flatten
