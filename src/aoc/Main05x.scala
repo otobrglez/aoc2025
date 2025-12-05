@@ -23,9 +23,7 @@ object Main05x extends AOCApp:
     listOfRanges: List[NumericRange.Inclusive[BigInt]] =
       rawRanges.map((start, end) => NumericRange.inclusive[BigInt](start, end, 1))
 
-    _ = ids.foreach { id =>
-          listOfRanges.exists(_.contains(id))
-        }
-
-    _ = println(rawRanges.head)
+    // Boom!
+    _                                                  =
+      ids.foreach(id => listOfRanges.exists(_.contains(id)))
   yield ()
