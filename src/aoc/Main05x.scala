@@ -23,7 +23,17 @@ object Main05x extends AOCApp:
     listOfRanges: List[NumericRange.Inclusive[BigInt]] =
       rawRanges.map((start, end) => NumericRange.inclusive[BigInt](start, end, 1))
 
-    // Boom!
+    // _ = ids.foreach(id => listOfRanges.exists(_.containsTyped(id))) // boom.
+    // _ = ids.foreach(id => listOfRanges.exists(_.contains(id)))      // boom.
+
+    // This also explodes.
     _                                                  =
-      ids.foreach(id => listOfRanges.exists(_.contains(id)))
+      ids.foreach(id =>
+        val fnd = listOfRanges.find(r => r.find(n => n == id).isDefined)
+        println(s"$id -> $fnd")
+      )
+
+    // This explodes
+    _                                                  =
+      (BigInt(0) to BigInt(4294967296L)).length
   yield ()

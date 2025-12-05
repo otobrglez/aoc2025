@@ -2,6 +2,13 @@ jvm := "25"
 
 test: aoc_01 aoc_02
 
+aoc_run main_class input_file:
+    scala-cli -q --jvm {{ jvm }} src src/aoc/{{ main_class }}.scala \
+      --main-class=aoc.{{ main_class }} -- {{ input_file }}
+
+console:
+  scala-cli console --jvm {{ jvm }}
+
 aoc_01 input_file="./inputs/01-example.txt":
     scala-cli --jvm {{ jvm }} src src/aoc/Main01.scala \
       --main-class=aoc.Main01 -- {{ input_file }}
@@ -25,3 +32,5 @@ aoc_03:
 
 aoc_03_real:
     just aoc_run Main03 ./inputs/03-input.txt
+
+
