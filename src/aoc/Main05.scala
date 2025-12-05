@@ -2,7 +2,6 @@ package aoc
 
 import zio.*
 import zio.stream.*
-import zio.Console.*
 import java.nio.file.*
 
 private type BigRange = (BigInt, BigInt)
@@ -36,12 +35,7 @@ object DB:
 
 object Main05 extends AOCApp:
   def program(path: Path) = for
-    _            <- printLine(s"Reading ${path.toAbsolutePath}")
-    db           <- DB.parseFrom(path)
-    // Part 1:
-    countFresh    = db.countFresh
-    _             = println(countFresh)
-    // Part 2:
-    countElements = db.countElements
-    _             = println(countElements)
+    db <- DB.parseFrom(path)
+    _   = println(s"Part 1: ${db.countFresh}")
+    _   = println(s"Part 2: ${db.countElements}")
   yield ()
