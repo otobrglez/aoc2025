@@ -26,12 +26,12 @@ private class DB private (
 
 object DB:
   private def parseRange(raw: String): BigRange =
-    val Array(start, end) = raw.split("-", 2).map(BigInt(_)); start -> end
+    val Array(start, end) = raw.split("-", 2).map(BigInt.apply); start -> end
 
   def parseFrom(path: Path): Task[DB] =
     val lines = ZStream.fromJavaIterator(Files.readAllLines(path).iterator()).map(_.trim)
     (lines.takeUntil(_.isEmpty).dropRight(1).map(parseRange).runCollect.map(_.toList) <&>
-      lines.dropUntil(_.isEmpty).map(BigInt(_)).runCollect.map(_.toSet)).map(new DB(_, _))
+      lines.dropUntil(_.isEmpty).map(BigInt.apply).runCollect.map(_.toSet)).map(new DB(_, _))
 
 object Main05 extends AOCApp:
   def program(path: Path) = for
