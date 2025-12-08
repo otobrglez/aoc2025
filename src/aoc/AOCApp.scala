@@ -2,6 +2,7 @@ package aoc
 
 import zio.*
 import java.nio.file.{Path, Paths}
+import io.AnsiColor.*
 
 trait AOCApp extends ZIOAppDefault:
 
@@ -13,6 +14,8 @@ trait AOCApp extends ZIOAppDefault:
   def program(input: Path): Task[Unit]
 
   override def run: ZIO[ZIOAppArgs & Scope, Any, Any] = for
-    path <- firstArgumentAsFile
-    out  <- program(path)
-  yield out
+    path          <- firstArgumentAsFile
+    _             <- zio.Console.printLine(s"🎄 Using input: ${path.toAbsolutePath}$RESET")
+    (duration, _) <- program(path).timed
+    _             <- zio.Console.printLine(s"🎄 Completed. Duration: $RED${duration.toMillis}ms$RESET")
+  yield ()
