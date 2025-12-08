@@ -11,6 +11,7 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli].
 - [Day 3](./src/aoc/Main03.scala)
 - [Day 4](./src/aoc/Main04.scala)
 - [Day 5](./src/aoc/Main05.scala)
+- [Day 8](./src/aoc/Main08.scala)
 
 ## Development
 
