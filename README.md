@@ -7,10 +7,10 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 ## Solutions
 
 - [Day 1](./src/aoc/Main01.scala)
-- [Day 2](./src/aoc/Main02.scala)
+- [Day 2](./src/aoc/Main02.scala) 
 - [Day 3](./src/aoc/Main03.scala)
 - [Day 4](./src/aoc/Main04.scala)
-- [Day 5](./src/aoc/Main05.scala)
+- [Day 5](./src/aoc/Main05.scala) - ["BigInt-ranges are br0ken (example)"](./src/aoc/Main05x.scala)
 - [Day 6](./src/aoc/Main06.scala)
 - [Day 7](./src/aoc/day7/Main07.scala) - [Scala TailCalls](https://www.scala-lang.org/api/3.x/scala/util/control/TailCalls$.html), [Scala TrieMap](https://www.scala-lang.org/api/3.1.2/scala/collection/concurrent/TrieMap.html), [Trampoline Optimization](https://marmelab.com/blog/2018/02/12/understanding-recursion.html#trampoline-optimization)
 - [Day 8](./src/aoc/Main08.scala) - [Scala Named Tuples](https://docs.scala-lang.org/sips/named-tuples.html)
