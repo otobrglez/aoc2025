@@ -1,37 +1,88 @@
 package aoc.day7
 
 import aoc.AOCApp
-import zio.*
 import aoc.Ops.*
+import zio.*
+import zio.stream.ZStream
 
 import java.nio.file.Path
+import scala.collection.mutable
+import scala.util.control.TailCalls.*
 
-private type Symbol = Char
-private val empty: Symbol        = '.'
-private val splitter: Symbol     = '^'
-private val symbols: Set[Symbol] = Set(empty, 'S', splitter)
-private type Row      = Long; private type Column = Long
-private type Position = (Row, Column)
+private type Position = (x: Long, y: Long)
+private type Grid     = Map[Position, Char]
 
-final private case class Grid private (
-  rows: Map[Position, Symbol] = Map.empty
-):
-  def start: Option[Position] = rows.collectFirst { case (pos, 'S') => pos }
+private def readGrid(path: Path): Task[Grid] =
+  path.linesStream.zipWithIndex
+    .map((line, r) => line.split("").zipWithIndex.map((char, c) => (r, c.toLong) -> char.head).toList)
+    .flatMap(ZStream.fromIterable)
+    .runCollect
+    .map(Map.from)
 
-private object Grid:
-  def from(path: Path): Task[Grid] =
-    path.linesStream.zipWithIndex
-      .map((r, i) => r.zipWithIndex.map((v, c) => (i, c.toLong) -> v))
-      .runCollect
-      .map(_.toList.flatten.toMap)
-      .map(Grid(_))
+private def findStart(grid: Grid): Option[Position] = grid.find(_._2 == 'S').map(_._1)
+
+private def solve(grid: Grid, start: Position): Long =
+  val beams = mutable.Queue(start)
+  val seen  = mutable.Set(start)
+  var count = 0L
+
+  def add(pos: Position) =
+    if !seen.contains(pos) then
+      seen.add(pos)
+      beams.enqueue(pos)
+
+  while beams.nonEmpty do
+    val pos = beams.dequeue()
+    grid
+      .get(pos)
+      .foreach:
+        case '.' | 'S' if pos.x != grid.size - 1 => add(pos.x + 1, pos.y)
+        case '^'                                 => count += 1; add(pos.x, pos.y - 1); add(pos.x, pos.y + 1)
+
+  count
+
+private def solve2(grid: Grid, start: Position): Long =
+  val cache = mutable.Map.empty[Position, Long]
+
+  def go(pos: Position): Long = cache.getOrElseUpdate(
+    pos,
+    grid.get(pos) match
+      case Some('.' | 'S') => go(pos.x + 1, pos.y)
+      case Some('^')       => go(pos.x, pos.y - 1) + go(pos.x, pos.y + 1)
+      case None            => 1L
+      case _               => 0L
+  )
+
+  go(start)
+
+private def solve2x(grid: Grid, start: Position): Long =
+  val cache = mutable.Map.empty[Position, Long]
+
+  def go(pos: Position): TailRec[Long] =
+    cache.get(pos) match
+      case Some(v) => done(v)
+      case None    =>
+        grid.get(pos) match
+          case Some('.' | 'S') =>
+            tailcall(go(pos.x + 1, pos.y)).map { v =>
+              cache(pos) = v; v
+            }
+          case Some('^')       =>
+            for
+              l <- tailcall(go(pos.x, pos.y - 1))
+              r <- tailcall(go(pos.x, pos.y + 1))
+            yield
+              cache(pos) = l + r; l + r
+          case None            => done { cache(pos) = 1L; 1L }
+          case _               => done { cache(pos) = 0L; 0L }
+
+  go(start).result
 
 object Main07 extends AOCApp:
 
   def program(input: Path) = for
-    _ <- zio.Console.printLine("go go go...")
-    g <- Grid.from(input)
-    _  = println(g)
-    _  = g.start.foreach(println)
-    _ <- zio.Console.printLine("go go go...")
+    grid  <- readGrid(input)
+    start <- ZIO.getOrFail(findStart(grid))
+    _      = println(s"Part 1: ${solve(grid, start)}")
+    _      = println(s"Part 2: ${solve2x(grid, start)}")
   yield ()
