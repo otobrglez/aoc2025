@@ -7,6 +7,7 @@ import zio.stream.ZStream
 
 import java.nio.file.Path
 import scala.collection.mutable
+import scala.collection.concurrent
 import scala.util.control.TailCalls.*
 
 private type Position = (x: Long, y: Long)
@@ -55,7 +56,7 @@ private def solve2(grid: Grid, start: Position): Long =
   go(start)
 
 private def solve2x(grid: Grid, start: Position): Long =
-  val cache = mutable.Map.empty[Position, Long]
+  val cache = concurrent.TrieMap.empty[Position, Long]
 
   def go(pos: Position): TailRec[Long] = cache.get(pos) match
     case Some(v) => done(v)
