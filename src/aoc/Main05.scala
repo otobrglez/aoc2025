@@ -1,7 +1,8 @@
 package aoc
 
+import aoc.Ops.linesStream
 import zio.*
-import zio.stream.*
+
 import java.nio.file.*
 
 private type BigRange = (BigInt, BigInt)
@@ -29,7 +30,7 @@ object DB:
     val Array(start, end) = raw.split("-", 2).map(BigInt.apply); start -> end
 
   def parseFrom(path: Path): Task[DB] =
-    val lines = ZStream.fromJavaIterator(Files.readAllLines(path).iterator()).map(_.trim)
+    val lines = path.linesStream
     (lines.takeUntil(_.isEmpty).dropRight(1).map(parseRange).runCollect.map(_.toList) <&>
       lines.dropUntil(_.isEmpty).map(BigInt.apply).runCollect.map(_.toSet)).map(new DB(_, _))
 

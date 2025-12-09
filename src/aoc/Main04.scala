@@ -10,7 +10,7 @@ private type Roll = Char
 private val roll: Roll = '@'; val space: Roll = '.'
 private type Row = Long; type Column = Long
 
-final class Grid private (private val grid: Map[(Row, Column), Option[Roll]] = Map.empty):
+final private class Grid private (private val grid: Map[(Row, Column), Option[Roll]] = Map.empty):
   def find(r: Row, c: Column): Option[Roll]                     = grid.get((r, c)).flatten
   def size: (Row, Column)                                       = grid.keys.map(_._1).max -> grid.keys.map(_._2).max
   private def iterator: Iterator[((Row, Column), Option[Roll])] = grid.iterator
@@ -36,7 +36,7 @@ final class Grid private (private val grid: Map[(Row, Column), Option[Roll]] = M
 
   def withoutAccessible: Grid = Grid.from(mapAccessible((_, _) => None))
 
-object Grid:
+private object Grid:
   def fromPath(path: Path): Task[Grid] = {
     for
       line -> r <- ZStream.fromJavaIterator(Files.readAllLines(path).iterator()).map(_.trim).zipWithIndex

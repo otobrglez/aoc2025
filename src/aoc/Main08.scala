@@ -1,7 +1,9 @@
 package aoc
 
+import Ops.*
 import zio.*
 import zio.stream.*
+
 import java.nio.file.*
 import Math.{pow, sqrt}
 import scala.collection.mutable
@@ -55,8 +57,7 @@ private def solve(positions: List[Position]) =
 
 object Main08 extends AOCApp:
   private def readPositions(path: Path): Task[List[Position]] =
-    ZStream
-      .fromJavaIterator(Files.readAllLines(path).iterator())
+    path.linesStream
       .map(_.trim)
       .map { r =>
         val List(x, y, z) = r.split(",", 3).map(_.toInt).toList; (x, y, z)

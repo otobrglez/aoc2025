@@ -1,19 +1,15 @@
-import aoc.AOCApp
-
-import zio.stream.*
+package aoc
+import aoc.Ops.*
 import zio.*
+
 import java.nio.file.*
-import Ops.*
 import scala.collection.mutable
 
 private type Operand = Char
 private val operands: Set[Operand] = Set('*', '+')
 
 private def part1(path: Path) =
-  val tokens = ZStream
-    .fromJavaIterator(Files.readAllLines(path).iterator())
-    .map(_.trim)
-    .map(_.split(" ").map(_.trim).toList.filter(_.nonEmpty))
+  val tokens = path.linesStream.map(_.trim).map(_.split(" ").map(_.trim).toList.filter(_.nonEmpty))
 
   for
     numbers <-
