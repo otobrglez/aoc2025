@@ -61,17 +61,12 @@ private def solve2x(grid: Grid, start: Position): Long =
     case Some(v) => done(v)
     case None    =>
       grid.get(pos) match
-        case Some('.' | 'S') =>
-          tailcall(go(pos.x + 1, pos.y)).map: v =>
-            cache(pos) = v; v
+        case Some('.' | 'S') => tailcall(go(pos.x + 1, pos.y)).map(cache.getOrElseUpdate(pos, _))
         case Some('^')       =>
-          for
-            l <- tailcall(go(pos.x, pos.y - 1))
-            r <- tailcall(go(pos.x, pos.y + 1))
-          yield
-            cache(pos) = l + r; l + r
-        case None            => done { cache(pos) = 1L; 1L }
-        case _               => done { cache(pos) = 0L; 0L }
+          for l <- tailcall(go(pos.x, pos.y - 1)); r <- tailcall(go(pos.x, pos.y + 1))
+          yield cache.getOrElseUpdate(pos, l + r)
+        case None            => done(cache.getOrElseUpdate(pos, 1L))
+        case _               => done(cache.getOrElseUpdate(pos, 0L))
 
   go(start).result
 
