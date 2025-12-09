@@ -26,10 +26,9 @@ private def solve(grid: Grid, start: Position): Long =
   val seen  = mutable.Set(start)
   var count = 0L
 
-  def add(pos: Position) =
-    if !seen.contains(pos) then
-      seen.add(pos)
-      beams.enqueue(pos)
+  def add(pos: Position): Unit = if !seen.contains(pos) then
+    seen.add(pos)
+    beams.enqueue(pos)
 
   while beams.nonEmpty do
     val pos = beams.dequeue()
@@ -58,23 +57,21 @@ private def solve2(grid: Grid, start: Position): Long =
 private def solve2x(grid: Grid, start: Position): Long =
   val cache = mutable.Map.empty[Position, Long]
 
-  def go(pos: Position): TailRec[Long] =
-    cache.get(pos) match
-      case Some(v) => done(v)
-      case None    =>
-        grid.get(pos) match
-          case Some('.' | 'S') =>
-            tailcall(go(pos.x + 1, pos.y)).map { v =>
-              cache(pos) = v; v
-            }
-          case Some('^')       =>
-            for
-              l <- tailcall(go(pos.x, pos.y - 1))
-              r <- tailcall(go(pos.x, pos.y + 1))
-            yield
-              cache(pos) = l + r; l + r
-          case None            => done { cache(pos) = 1L; 1L }
-          case _               => done { cache(pos) = 0L; 0L }
+  def go(pos: Position): TailRec[Long] = cache.get(pos) match
+    case Some(v) => done(v)
+    case None    =>
+      grid.get(pos) match
+        case Some('.' | 'S') =>
+          tailcall(go(pos.x + 1, pos.y)).map: v =>
+            cache(pos) = v; v
+        case Some('^')       =>
+          for
+            l <- tailcall(go(pos.x, pos.y - 1))
+            r <- tailcall(go(pos.x, pos.y + 1))
+          yield
+            cache(pos) = l + r; l + r
+        case None            => done { cache(pos) = 1L; 1L }
+        case _               => done { cache(pos) = 0L; 0L }
 
   go(start).result
 
