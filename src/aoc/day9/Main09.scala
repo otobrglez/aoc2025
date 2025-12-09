@@ -21,8 +21,8 @@ def findLargestArea(positions: List[Position]): Option[(Position, Position, Long
   pairs.map((p1, p2) => (p1, p2, p1.area(p2))).maxByOption(_._3)
 
 def isInside(pt1: Position, pt2: Position, polygon: List[Position]): Boolean =
-  val (xmin, xmax) = (Math.min(pt1.x, pt2.x), Math.max(pt1.x, pt2.x))
-  val (ymin, ymax) = (Math.min(pt1.y, pt2.y), Math.max(pt1.y, pt2.y))
+  val (xmin, xmax) = Math.min(pt1.x, pt2.x) -> Math.max(pt1.x, pt2.x)
+  val (ymin, ymax) = Math.min(pt1.y, pt2.y) -> Math.max(pt1.y, pt2.y)
 
   val edges = polygon.indices.map(i => (polygon(i), polygon((i + 1) % polygon.length)))
   edges.forall: (p1, p2) =>
