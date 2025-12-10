@@ -18,7 +18,7 @@ trait AOCApp extends ZIOAppDefault:
     path          <- firstArgumentAsFile
     _             <-
       zio.Console.printLine(
-        s"🎄 Build info: Scala ${BuildInfo.scalaVersion} / CLI ${BuildInfo.scalaCliVersion.get} / JVM: ${BuildInfo.jvmVersion}"
+        s"🎅 Build info: Scala ${BuildInfo.scalaVersion} / CLI ${BuildInfo.scalaCliVersion.get} / JVM: ${BuildInfo.jvmVersion}"
       )
     _             <- zio.Console.printLine(s"🎄 Using input: ${path.toAbsolutePath}$RESET")
     (duration, _) <- program(path).timed
