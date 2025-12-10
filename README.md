@@ -23,7 +23,7 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 
 ```bash
 just aoc_run Main04 ./inputs/04-example.txt # For given examples
-just aoc_run Main04 ./inputs/04-input.txt # For my input
+just aoc_run day10.Main10 ./inputs/10-input.txt # For real input
 ```
 
 \- [Oto Brglez](https://github.com/otobrglez)
