@@ -98,7 +98,7 @@ private def solvePart2x(machine: Machine): Task[Long] = Z3Solver.withContext: ct
 
   // Solve
   opt.Check() match
-    case Status.SATISFIABLE => opt.getModel.evaluate(totalPresses, true).asInstanceOf[IntNum].getInt64
+    case Status.SATISFIABLE => opt.getModel.eval(totalPresses, false).asInstanceOf[IntNum].getInt64
     case status             => throw new IllegalStateException(s"Could not determine or find solution: $status")
 
 private def part1(machines: Vector[Machine]): Long       = machines.foldLeft(0L)(_ + solvePart1(_))
