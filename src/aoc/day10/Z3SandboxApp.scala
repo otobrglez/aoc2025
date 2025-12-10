@@ -27,8 +27,7 @@ private def demoEquation = Z3Solver.withContext: ctx =>
       println("No solution found: " + status)
 
 private def demoWear = Z3Solver.withContext: ctx =>
-  val tie   = ctx.mkBoolConst("tie")
-  val shirt = ctx.mkBoolConst("shirt")
+  val (tie, shirt) = ctx.mkBoolConst("tie") -> ctx.mkBoolConst("shirt")
 
   val solver = ctx.mkSolver()
   solver.add(ctx.mkOr(tie, shirt))                       // tie OR shirt
