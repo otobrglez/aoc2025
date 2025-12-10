@@ -2,8 +2,6 @@ package aoc
 
 import Ops.*
 import zio.*
-import zio.stream.*
-
 import java.nio.file.*
 import Math.{pow, sqrt}
 import scala.collection.mutable

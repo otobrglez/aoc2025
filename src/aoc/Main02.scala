@@ -22,8 +22,8 @@ object Main02 extends AOCApp:
     List(rawStart, rawEnd) <- Try(raw.split("-", 2).map(_.trim).toList).toEither.left.map(_ => InvalidNumber(raw))
     startID                <- Either.cond(!(rawStart.startsWith("0") && rawStart.length > 1), rawStart, LeadingZeroError(rawStart))
     endID                  <- Either.cond(!(rawEnd.startsWith("0") && rawEnd.length > 1), rawEnd, LeadingZeroError(rawEnd))
-    bigStartID             <- Try(BigInt(startID)).toEither.left.map(th => InvalidNumber(startID))
-    bigEndID               <- Try(BigInt(endID)).toEither.left.map(th => InvalidNumber(endID))
+    bigStartID             <- Try(BigInt(startID)).toEither.left.map(_ => InvalidNumber(startID))
+    bigEndID               <- Try(BigInt(endID)).toEither.left.map(_ => InvalidNumber(endID))
     invalidIDs              = (bigStartID to bigEndID).filter(numberValidator).toList
     _                      <- Either.cond(invalidIDs.isEmpty, (), RepeatedNumbersError(invalidIDs))
   yield bigStartID -> bigEndID

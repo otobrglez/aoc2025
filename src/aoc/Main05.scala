@@ -19,8 +19,8 @@ private object BigRange:
       }
 
 private class DB private (
-  private val ranges: List[BigRange] = List.empty,
-  private val items: Set[BigInt] = Set.empty
+  private val ranges: List[BigRange],
+  private val items: Set[BigInt]
 ):
   def countFresh: Long      = items.count(id => ranges.exists(BigRange.contains(id)))
   def countElements: BigInt = BigRange.merge(ranges).map((start, end) => end - start + 1).sum

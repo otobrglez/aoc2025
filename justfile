@@ -23,10 +23,6 @@ aoc_02 input_file="./inputs/02-example.txt":
 aoc_02_real:
     just aoc_02 "./inputs/02-input.txt"
 
-aoc_run main_class input_file:
-    scala-cli -q --jvm {{ jvm }} src src/aoc/{{ main_class }}.scala \
-      --main-class=aoc.{{ main_class }} -- {{ input_file }}
-
 aoc_03:
     just aoc_run Main03 ./inputs/03-example.txt
 
