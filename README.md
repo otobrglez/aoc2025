@@ -2,7 +2,7 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 
-This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and some [ZIO](https://zio.dev/).
+This is my [AoC 2025][aoc] in [Scala 3][scala] and a pinch of [ZIO](https://zio.dev/).
 
 ## Solutions
 
@@ -21,8 +21,9 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 
 ## Development
 
-Please make sure you have [Scala CLI][scala-cli] installed. My preferred way to manage dependencies and have reproducible per-project isolation is to use [devenv](https://devenv.sh/). 
-So make sure you have it installed and check the contence of [`devenv.nix`](./devenv.nix).
+Please make sure you have [Scala CLI][scala-cli] installed. 
+
+My preferred way to manage dependencies and have reproducible per-project isolation is to use [devenv](https://devenv.sh/). If you follow that paradigm, please do check the [`devenv.nix`](./devenv.nix).
 
 Check the content of [`justfile`](./justfile) for some useful commands.
 
