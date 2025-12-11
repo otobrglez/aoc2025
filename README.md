@@ -21,6 +21,11 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 
 ## Development
 
+Please make sure you have [Scala CLI][scala-cli] installed. My preferred way to manage dependencies and have reproducible per-project isolation is to use [devenv](https://devenv.sh/). 
+So make sure you have it installed and check the contence of [`devenv.nix`](./devenv.nix).
+
+Check the content of [`justfile`](./justfile) for some useful commands.
+
 ```bash
 just aoc_run Main04 ./inputs/04-example.txt # For given examples
 just aoc_run day10.Main10 ./inputs/10-input.txt # For real input

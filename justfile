@@ -6,5 +6,3 @@ aoc_run main_class input_file:
       --main-class=aoc.{{ main_class }} -- {{ input_file }}
 console:
   scala-cli console -S {{ scala }} --jvm {{ jvm }}
-
-
