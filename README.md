@@ -7,7 +7,7 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 ## Solutions
 
 - [Day 1](./src/aoc/Main01.scala)
-- [Day 2](./src/aoc/Main02.scala) 
+- [Day 2](./src/aoc/Main02.scala)
 - [Day 3](./src/aoc/Main03.scala)
 - [Day 4](./src/aoc/Main04.scala)
 - [Day 5](./src/aoc/Main05.scala) - ["BigInt-ranges are br0ken (example)"](./src/aoc/Main05x.scala)
@@ -16,7 +16,7 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 - [Day 8](./src/aoc/Main08.scala) - [Scala Named Tuples](https://docs.scala-lang.org/sips/named-tuples.html)
 - [Day 9](./src/aoc/day9/Main09.scala) - [Scala parallel collections](https://github.com/scala/scala-parallel-collections)
 - [Day 10](./src/aoc/day10/Main10.scala) - [Bitmasking](https://www.baeldung.com/java-bitmasking), [Microsoft Z3](https://www.microsoft.com/en-us/research/project/z3-3/) ([SMT Solvers](https://de-engineer.github.io/SMT-Solvers/), [Satisfiability modulo theories](https://en.wikipedia.org/wiki/Satisfiability_modulo_theories)), [Scala PriorityQueue](https://scala-lang.org/api/3.x/scala/collection/mutable/PriorityQueue$.html)
-- Day 11
+- [Day 11](./src/aoc/day11/Main11.scala) - [Depth-first search (DFS)](https://en.wikipedia.org/wiki/Depth-first_search), [BitSet](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/BitSet.html), [DP and DAGs](https://www.geeksforgeeks.org/competitive-programming/dynamic-programming-dp-and-directed-acyclic-graphs-dag/), [Bitmask DP](https://dilipkumar.medium.com/bitmasking-dynamic-programming-coding-pattern-789030c04cd8)
 - Day 12
 
 ## Development

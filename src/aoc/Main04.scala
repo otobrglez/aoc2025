@@ -30,9 +30,9 @@ final private class Grid private (private val grid: Map[(Row, Column), Option[Ro
   def numberOfAccessible(): Long =
     iterator.collect { case (pos @ (r, c), Some(`roll`)) => pos -> countNeighbors(r, c) }.count((_, count) => count < 4)
 
-  def mapAccessible(f: (Row, Column) => Option[Roll]): Seq[((Row, Column), Option[Roll])] = iterator.toSeq.map:
-    case (pos @ (r, c), v @ Some(`roll`)) if countNeighbors(r, c) < 4 => pos -> f(r, c)
-    case pos -> v                                                     => pos -> v
+  private def mapAccessible(f: (Row, Column) => Option[Roll]): Seq[((Row, Column), Option[Roll])] = iterator.toSeq.map:
+    case (pos @ (r, c), Some(`roll`)) if countNeighbors(r, c) < 4 => pos -> f(r, c)
+    case pos -> v                                                 => pos -> v
 
   def withoutAccessible: Grid = Grid.from(mapAccessible((_, _) => None))
 
@@ -60,7 +60,7 @@ private object Grid:
 object Main04 extends AOCApp:
   def program(path: Path) = for
     grid              <- Grid.fromPath(path).tap(Grid.print)
-    // Part 1: Number of neighbour roles less than 4
+    // Part 1: Number of neighbor roles less than 4
     numberOfPaperRoles = grid.numberOfAccessible()
     _                  = println(numberOfPaperRoles)
     // Part 2: Number of removable roles

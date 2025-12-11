@@ -12,10 +12,12 @@ private object BigRange:
     if ranges.isEmpty then List.empty
     else
       val head :: tail = ranges.sortBy(_._1): @unchecked
-      tail.foldLeft(head :: Nil) { case (merged @ mHead :: mTail, current @ (currentStart, currentEnd)) =>
-        val lastStart -> lastEnd = mHead
-        if currentStart <= lastEnd + 1 then lastStart -> lastEnd.max(currentEnd) :: mTail
-        else current :: merged
+      tail.foldLeft(head :: Nil) {
+        case (merged @ mHead :: mTail, current @ (currentStart, currentEnd)) =>
+          val lastStart -> lastEnd = mHead
+          if currentStart <= lastEnd + 1 then lastStart -> lastEnd.max(currentEnd) :: mTail
+          else current :: merged
+        case (agg, _)                                                        => agg
       }
 
 private class DB private (
