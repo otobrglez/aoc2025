@@ -23,7 +23,7 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 
 Please make sure you have [Scala CLI][scala-cli] installed. My preferred way to manage dependencies and have
 reproducible per-project isolation is to use [devenv](https://devenv.sh/).
-So make sure you have it installed and check the contence of [`devenv.nix`](./devenv.nix).
+If you follow that paradigm, please do check the [`devenv.nix`](./devenv.nix).
 
 Check the content of [`justfile`](./justfile) for some useful commands.
 
