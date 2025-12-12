@@ -96,7 +96,7 @@ private def countPaths(
   dp(start -> 0)
 
 object Main11 extends aoc.AOCApp:
-  def program(path: Path) = for
+  def program(path: Path): Task[Unit] = for
     out <- parse(path).debugWith(r => s"Racks: ${r.size}")
 
     (d1, numberOfPaths) <- ZIO.succeed(findPathsFrom(out, "you", "out").length).timed

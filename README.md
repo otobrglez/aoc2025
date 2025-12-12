@@ -17,11 +17,12 @@ This is my [AoC 2025][aoc] in [Scala 3][scala] with [Scala CLI][scala-cli] and s
 - [Day 9](./src/aoc/day9/Main09.scala) - [Scala parallel collections](https://github.com/scala/scala-parallel-collections)
 - [Day 10](./src/aoc/day10/Main10.scala) - [Bitmasking](https://www.baeldung.com/java-bitmasking), [Microsoft Z3](https://www.microsoft.com/en-us/research/project/z3-3/) ([SMT Solvers](https://de-engineer.github.io/SMT-Solvers/), [Satisfiability modulo theories](https://en.wikipedia.org/wiki/Satisfiability_modulo_theories)), [Scala PriorityQueue](https://scala-lang.org/api/3.x/scala/collection/mutable/PriorityQueue$.html)
 - [Day 11](./src/aoc/day11/Main11.scala) - [Depth-first search (DFS)](https://en.wikipedia.org/wiki/Depth-first_search), [BitSet](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/BitSet.html), [DP and DAGs](https://www.geeksforgeeks.org/competitive-programming/dynamic-programming-dp-and-directed-acyclic-graphs-dag/), [Bitmask DP](https://dilipkumar.medium.com/bitmasking-dynamic-programming-coding-pattern-789030c04cd8)
-- Day 12
+- [Day 12](./src/aoc/day12/Main12.scala) - [Scala MurmurHash3](https://www.scala-lang.org/api/3.x/scala/util/hashing/MurmurHash3$.html), [Java HashSet](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/HashSet.html), [Bitboard](https://en.wikipedia.org/wiki/Bitboard), [Inlining in the JVM](https://www.baeldung.com/jvm-method-inlining), [Scala 3 Inline](https://docs.scala-lang.org/scala3/guides/macros/inline.html)
 
 ## Development
 
-Please make sure you have [Scala CLI][scala-cli] installed. My preferred way to manage dependencies and have reproducible per-project isolation is to use [devenv](https://devenv.sh/). 
+Please make sure you have [Scala CLI][scala-cli] installed. My preferred way to manage dependencies and have
+reproducible per-project isolation is to use [devenv](https://devenv.sh/).
 So make sure you have it installed and check the contence of [`devenv.nix`](./devenv.nix).
 
 Check the content of [`justfile`](./justfile) for some useful commands.

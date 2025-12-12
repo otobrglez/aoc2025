@@ -45,7 +45,7 @@ object Main02 extends AOCApp:
       .flatMap(ZStream.fromIterable)
       .runSum
 
-  def program(path: Path) = for
+  def program(path: Path): Task[Unit] = for
     _ <- sumInvalid(path, isInvalid).debug(s"Part 1")
     _ <- sumInvalid(path, isInvalidPart2).debug(s"Part 2")
   yield ()

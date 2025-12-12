@@ -45,10 +45,9 @@ private def demoWear = Z3Solver.withContext: ctx =>
 
 // Examples from: https://microsoft.github.io/z3guide/programming/Z3%20JavaScript%20Examples
 object Z3SandboxApp extends ZIOAppDefault:
-  def program = for
+  def program: Task[Unit] = for
     _ <- demoEquation
     _ <- demoWear.debug("Wear")
-    _  = println("Done!")
   yield ()
 
   def run = program

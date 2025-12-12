@@ -11,7 +11,7 @@ object Main01 extends AOCApp:
   private def zeros(p: Int, d: Int): Int =
     (Math.abs(d) + (if d < 0 && p != 0 then 100 - p else p)) / 100
 
-  def program(path: Path) = for
+  def program(path: Path): Task[Unit] = for
     rs     <-
       ZStream
         .fromJavaIterator(Files.readAllLines(path).iterator())
